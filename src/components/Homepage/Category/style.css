@@ -1,0 +1,10 @@
+#image {
+    background-image: url(../../img/home-page-03-featured-category.jpg);
+  }
+  #image-1 {
+    background-image: url(../../img/home-page-03-category-01.jpg);
+  }
+  #image-2 {
+    background-image: url(../../img/home-page-03-category-02.jpg);
+    background-size: cover;
+  }
