@@ -85,13 +85,34 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 export default function ProductOverView({ setShopCart, ArrShopCart }) {
-  const [selectedColor, setSelectedColor] = useState('')
-  const [selectedSize, setSelectedSize] = useState('')
-  const [disabled, setDisabled] = useState('')
   const { data } = useContext(DataContext)
   const { id } = useParams()
   const filteredData = data.filter(item => item.id == id);
   const objData = filteredData[0]
+  const [selectedColor, setSelectedColor] = useState('')
+  const [selectedSize, setSelectedSize] = useState('')
+  const [disabled, setDisabled] = useState('')
+  const [changeIamge, setChangeImage] = useState(0)
+
+  const handelChangeImageIncrease = () => {
+    if (objData.images.length - 1 === changeIamge) { setChangeImage(objData.images.length - 1) }
+    else {
+      setChangeImage(changeIamge + 1)
+    }
+  }
+
+  const handelChangeImageDecrease = () => {
+    if (changeIamge <= 0) {
+      setChangeImage(0)
+    } else {
+      setChangeImage(changeIamge - 1)
+    }
+  }
+
+
+
+
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -160,7 +181,19 @@ export default function ProductOverView({ setShopCart, ArrShopCart }) {
 
         {/* Image gallery */}
 
-        <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+        <div className="mx-auto mt-6 max-w-2xl px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+          {/* reponsive image mobile && ipad */}
+          <div className="aspect-h-4 aspect-w-3 lg:hidden overflow-hidden rounded-lg lg:block">
+            <div className='text-4xl flex justify-between relative top-52 sm:top-72'>
+              <span onClick={handelChangeImageIncrease}><i className='fa fa-angle-left hover:bg-white text-gray-300'></i></span>
+              <span onClick={handelChangeImageDecrease}><i className='fa fa-angle-right hover:bg-white text-gray-300'></i></span>
+            </div>
+            <img
+              alt={objData.images[1]}
+              src={objData.images[changeIamge]}
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
           <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
             <img
               alt={objData.images[1]}
@@ -251,7 +284,7 @@ export default function ProductOverView({ setShopCart, ArrShopCart }) {
               {/* Sizes */}
               <div className="mt-10">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-medium   -900">Size</h3>
+                  <h3 className="text-sm font-medium b  -900">Size</h3>
                   <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
                     Size guide
                   </a>
@@ -261,7 +294,7 @@ export default function ProductOverView({ setShopCart, ArrShopCart }) {
                   <RadioGroup
                     value={selectedSize}
 
-                    className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4"
+                    className=" grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4"
                   >
                     {objData.size.map((size) => (
                       <Radio
@@ -270,7 +303,7 @@ export default function ProductOverView({ setShopCart, ArrShopCart }) {
                         value={size}
                         disabled={false}
                         className={classNames(
-                          `cursor-pointer  ${selectedSize === size ? 'bg-blue-300 hover:bg-blue-600' : 'bg-white hover:bg-gray-50'}   -900 shadow-sm group relative flex items-center justify-center rounded-md border px-4 py-3 text-sm font-medium uppercase  focus:outline-none data-[focus]:ring-2 data-[focus]:ring-indigo-500 sm:flex-1 sm:py-6`
+                          `cursor-pointer text-white ${selectedSize === size ? 'bg-blue-400 hover:bg-blue-600' : 'bg-gray-400 hover:bg-gray-500'}   shadow-sm group relative flex items-center justify-center rounded-md border px-4 py-3 text-sm font-medium uppercase  focus:outline-none data-[focus]:ring-2 data-[focus]:ring-indigo-500 sm:flex-1 sm:py-6`
                         )}
                       >
                         <span>{size}</span>

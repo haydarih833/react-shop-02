@@ -43,15 +43,15 @@ const navigation = {
           id: 'clothing',
           name: 'Clothing',
           items: [
-            { name: 'Tops', href: '/products/clothes' },
-            { name: 'Dresses', href: '#' },
+            { name: 'Clothes', href: '/products/Clothes' },
+            { name: 'Shose', href: '/products/Shose' },
             { name: 'Pants', href: '#' },
             { name: 'Denim', href: '#' },
             { name: 'Sweaters', href: '#' },
             { name: 'T-Shirts', href: '#' },
             { name: 'Jackets', href: '#' },
             { name: 'Activewear', href: '#' },
-            { name: 'Browse All', href: '#' },
+            { name: 'Browse All', href: '/products/Clothes' },
           ],
         },
         {
@@ -102,13 +102,13 @@ const navigation = {
           id: 'clothing',
           name: 'Clothing',
           items: [
-            { name: 'Tops', href: '#' },
-            { name: 'Pants', href: '#' },
+            { name: 'Clothes', href: '/products/Clothes' },
+            { name: 'Shose', href: '/products/Shose' },
             { name: 'Sweaters', href: '#' },
             { name: 'T-Shirts', href: '#' },
             { name: 'Jackets', href: '#' },
             { name: 'Activewear', href: '#' },
-            { name: 'Browse All', href: '#' },
+            { name: 'Browse All', href: '/products/Clothes' },
           ],
         },
         {
@@ -157,7 +157,7 @@ export default function Navbar({ Search, ArrShopCart, setLightAndDark, ligthAndD
       i = 0;
     }
   }, [])
-  // setInterval(handleTextChange,6000)
+  setInterval(handleTextChange,6000)
   return (
     <div >
       {/* Mobile menu */}
@@ -169,7 +169,7 @@ export default function Navbar({ Search, ArrShopCart, setLightAndDark, ligthAndD
         <div className="fixed inset-0 z-40 flex">
           <DialogPanel
             transition
-            className="relative flex w-full max-w-xs transform flex-col overflow-y-auto bg-white pb-12 shadow-xl transition duration-300 ease-in-out data-[closed]:-translate-x-full"
+            className={`relative flex w-full max-w-xs transform flex-col overflow-y-auto ${ligthAndDark ? 'bg-white' : 'bg-black text-white'} pb-12 shadow-xl transition duration-300 ease-in-out data-[closed]:-translate-x-full`}
           >
             <div className="flex px-4 pb-2 pt-5">
               <button
@@ -330,7 +330,6 @@ export default function Navbar({ Search, ArrShopCart, setLightAndDark, ligthAndD
                       >
                         {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
                         <div aria-hidden="true" className="absolute inset-0 top-1/2  shadow" />
-                        {/* find me */}
                         <div className={`relative ${ligthAndDark ? 'bg-white' : 'bg-black'} `} >
                           <div className="mx-auto max-w-7xl px-8">
                             <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">

@@ -23,7 +23,7 @@ export default function App() {
             <Layout Search={setHasActiveSerarch} ArrShopCart={ArrShopCart.length} setLightAndDark={setLightAndDark} ligthAndDark={ligthAndDark}>
               <Routes>
                 <Route path='/' element={<Homepage />} />
-                <Route path='/products/:id' element={<ProductList />} />
+                <Route path='/products/:id' element={<ProductList ligthAndDark={ligthAndDark}/>} />
                 <Route path='/product/:id' element={<ProductOverView setShopCart={setShopCart} ArrShopCart={ArrShopCart} />} />
                 <Route path='/shopcart' element={<ShopCart ArrShopCart={ArrShopCart} setShopCart={setShopCart} />} />
                 <Route path='/sign' element={<Sign />} />
